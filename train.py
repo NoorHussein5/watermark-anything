@@ -882,5 +882,23 @@ if __name__ == '__main__':
     parser = get_parser()
     params = parser.parse_args()
 
+
+# Set message length to 100 bits
+message_length = 100
+
+# Example message (ensure it's 100 bits long when encoded)
+message = 'A' * message_length
+binary_message = ''.join(format(ord(c), '08b') for c in message)  # Convert message to binary string
+
+# Embed the binary message into the image
+image = embed_message(image, binary_message)
+
+# Later in the code, decode the message
+decoded_binary = decode_message(image, message_length)
+
+# Ensure decoded message matches the original
+assert decoded_binary == binary_message
+
+    
     # run experiment
     main(params)
